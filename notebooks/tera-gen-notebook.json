@@ -1,0 +1,185 @@
+{
+  "paragraphs": [
+    {
+      "title": "Load  dependencies for accessing s3",
+      "text": "%spark.dep\n\nz.reset() // clean up previously added artifact and repository\nz.load(\"org.apache.hadoop:hadoop-aws:2.7.1\")\nz.load(\"com.amazonaws:aws-java-sdk:1.7.4\")",
+      "user": "anonymous",
+      "dateUpdated": "2017-09-04T18:54:52+0000",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1504550824639_251961852",
+      "id": "20170831-205228_202602273",
+      "dateCreated": "2017-09-04T18:47:04+0000",
+      "dateStarted": "2017-09-04T18:54:52+0000",
+      "dateFinished": "2017-09-04T18:55:08+0000",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "focus": true,
+      "$$hashKey": "object:19991"
+    },
+    {
+      "title": "Load the application jar",
+      "text": "%spark.dep\n\nz.load(\"/opt/spark/examples/jars/spark-terasort-1.1-SNAPSHOT.jar\")",
+      "user": "anonymous",
+      "dateUpdated": "2017-09-04T18:55:46+0000",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1504550824639_251961852",
+      "id": "20170904-172524_1639593312",
+      "dateCreated": "2017-09-04T18:47:04+0000",
+      "dateStarted": "2017-09-04T18:55:46+0000",
+      "dateFinished": "2017-09-04T18:55:47+0000",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:19992"
+    },
+    {
+      "title": "Configure spark context",
+      "text": "%spark\nsc.hadoopConfiguration.set(\"fs.s3a.access.key\",\"[your-key]\")\nsc.hadoopConfiguration.set(\"fs.s3a.secret.key\",\"[your-secret]]\")\nsc.hadoopConfiguration.set(\"fs.s3a.impl\", \"org.apache.hadoop.fs.s3a.S3AFileSystem\")\nsc.hadoopConfiguration.set(\"fs.s3a.buffer.dir\", \"/root/spark/work,/tmp\") ",
+      "user": "anonymous",
+      "dateUpdated": "2017-09-04T18:55:53+0000",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1504550824640_237726143",
+      "id": "20170831-205702_465725356",
+      "dateCreated": "2017-09-04T18:47:04+0000",
+      "dateStarted": "2017-09-04T18:55:53+0000",
+      "dateFinished": "2017-09-04T18:56:01+0000",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:19993"
+    },
+    {
+      "title": "Run TeraGen",
+      "text": "%spark\n\nimport com.github.ehiggs.spark.terasort._\n\n// modify the input parameters!\nTeraGen.run(sc,\"1g\",\"s3a://lp-deps-test/tera-gen-2\")\n",
+      "user": "anonymous",
+      "dateUpdated": "2017-09-04T18:56:07+0000",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "editorHide": false,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1504550824640_237726143",
+      "id": "20170904-174848_495079121",
+      "dateCreated": "2017-09-04T18:47:04+0000",
+      "dateStarted": "2017-09-04T18:56:07+0000",
+      "dateFinished": "2017-09-04T18:57:39+0000",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:19994"
+    },
+    {
+      "text": "%spark\n",
+      "dateUpdated": "2017-09-04T18:47:04+0000",
+      "config": {
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1504550824640_237726143",
+      "id": "20170904-175301_1676233597",
+      "dateCreated": "2017-09-04T18:47:04+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:19995"
+    }
+  ],
+  "name": "tera-gen-notebook",
+  "id": "2CRCPZA3A",
+  "angularObjects": {
+    "2CS2HMXFF:shared_process": [],
+    "2CRW68XYK:shared_process": [],
+    "2CR15GCRJ:shared_process": [],
+    "2CR4M6BBY:shared_process": [],
+    "2CRXXY9W7:shared_process": [],
+    "2CT2D9HV3:shared_process": [],
+    "2CQURB3C4:shared_process": [],
+    "2CR4CUNTW:shared_process": [],
+    "2CSE6XST4:shared_process": [],
+    "2CRVXZ1V8:shared_process": [],
+    "2CTSAD4XU::2CRCPZA3A": [],
+    "2CRK7TKTZ:shared_process": [],
+    "2CT1CS7TJ:shared_process": [],
+    "2CTET9VVS:shared_process": [],
+    "2CRJG1AKE:shared_process": [],
+    "2CU7MT2DQ:shared_process": [],
+    "2CR22DH3D:shared_process": [],
+    "2CTM8WGVV:shared_process": [],
+    "2CT58BWFC:shared_process": []
+  },
+  "config": {
+    "looknfeel": "default",
+    "personalizedMode": "false"
+  },
+  "info": {}
+}

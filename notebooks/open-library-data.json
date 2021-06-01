@@ -1,0 +1,212 @@
+{
+  "paragraphs": [
+    {
+      "title": "Load dependencies for accessing s3",
+      "text": "%spark.dep\n\nz.reset() // clean up previously added artifact and repository\n\nz.load(\"org.apache.hadoop:hadoop-aws:2.7.1\")\nz.load(\"com.amazonaws:aws-java-sdk:1.7.4\")",
+      "user": "anonymous",
+      "dateUpdated": "2017-09-04T19:38:54+0000",
+      "config": {
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1504546370797_1092015733",
+      "id": "20170831-205228_202602273",
+      "dateCreated": "2017-09-04T17:32:50+0000",
+      "dateStarted": "2017-09-04T19:38:54+0000",
+      "dateFinished": "2017-09-04T19:39:11+0000",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "focus": true,
+      "$$hashKey": "object:24547"
+    },
+    {
+      "title": "Configure the spark context",
+      "text": "%spark.pyspark\n\nsc._jsc.hadoopConfiguration().set(\"fs.s3a.access.key\",\"[your-key]\")\nsc._jsc.hadoopConfiguration().set(\"fs.s3a.secret.key\",\"[your-secret]\")\n",
+      "user": "anonymous",
+      "dateUpdated": "2017-09-04T19:41:00+0000",
+      "config": {
+        "colWidth": 12,
+        "editorMode": "ace/mode/python",
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "pieChart",
+              "height": 300,
+              "optionOpen": false
+            },
+            "helium": {}
+          }
+        },
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1504546370797_1092015733",
+      "id": "20170831-205449_1680318766",
+      "dateCreated": "2017-09-04T17:32:50+0000",
+      "dateStarted": "2017-09-04T19:39:14+0000",
+      "dateFinished": "2017-09-04T19:39:22+0000",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:24548"
+    },
+    {
+      "title": "Load and parse the data",
+      "text": "%spark.pyspark\n\npath = \"s3a://lp-deps-test/data/ol_cdump.json\"\nraw_data = sc.textFile(path)\n\nimport json\ndataset = raw_data.map(json.loads)\ndataset.persist()\n",
+      "user": "anonymous",
+      "dateUpdated": "2017-09-04T19:39:25+0000",
+      "config": {
+        "colWidth": 12,
+        "editorMode": "ace/mode/python",
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "pieChart",
+              "height": 300,
+              "optionOpen": false
+            },
+            "helium": {}
+          }
+        },
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorHide": false,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1504553644714_813311544",
+      "id": "20170904-193404_1499652940",
+      "dateCreated": "2017-09-04T19:34:04+0000",
+      "dateStarted": "2017-09-04T19:39:25+0000",
+      "dateFinished": "2017-09-04T19:39:25+0000",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:24549"
+    },
+    {
+      "title": "Play with the data",
+      "text": "%spark.pyspark\n\ncount_per_key = (\n    dataset\n    .map(lambda e: (len(e.keys()), 1))\n    .reduceByKey(lambda x, y: x + y)\n    .collect()\n  )\n  \nprint(\"%table\")\nfor e in count_per_key:\n  print(\"%d\\t%d\" % (e[0], e[1]))",
+      "user": "anonymous",
+      "dateUpdated": "2017-09-04T19:40:15+0000",
+      "config": {
+        "colWidth": 12,
+        "editorMode": "ace/mode/python",
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "pieChart",
+              "height": 300,
+              "optionOpen": false
+            },
+            "helium": {}
+          }
+        },
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorHide": false,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1504553782818_-237270780",
+      "id": "20170904-193622_496574871",
+      "dateCreated": "2017-09-04T19:36:22+0000",
+      "dateStarted": "2017-09-04T19:40:15+0000",
+      "dateFinished": "2017-09-04T19:40:17+0000",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:24550"
+    },
+    {
+      "text": "%spark.pyspark\n",
+      "dateUpdated": "2017-09-04T17:32:50+0000",
+      "config": {
+        "colWidth": 12,
+        "editorMode": "ace/mode/python",
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1504546370797_1092015733",
+      "id": "20170831-205702_465725356",
+      "dateCreated": "2017-09-04T17:32:50+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:24551"
+    }
+  ],
+  "name": "open-library-data",
+  "id": "2CTEU6BBU",
+  "angularObjects": {
+    "2CS2HMXFF:shared_process": [],
+    "2CRW68XYK:shared_process": [],
+    "2CR15GCRJ:shared_process": [],
+    "2CR4M6BBY:shared_process": [],
+    "2CRXXY9W7:shared_process": [],
+    "2CT2D9HV3:shared_process": [],
+    "2CQURB3C4:shared_process": [],
+    "2CR4CUNTW:shared_process": [],
+    "2CSE6XST4:shared_process": [],
+    "2CRVXZ1V8:shared_process": [],
+    "2CRK7TKTZ:shared_process": [],
+    "2CTSAD4XU::2CTEU6BBU": [],
+    "2CT1CS7TJ:shared_process": [],
+    "2CTET9VVS:shared_process": [],
+    "2CRJG1AKE:shared_process": [],
+    "2CU7MT2DQ:shared_process": [],
+    "2CR22DH3D:shared_process": [],
+    "2CTM8WGVV:shared_process": [],
+    "2CT58BWFC:shared_process": []
+  },
+  "config": {
+    "looknfeel": "default",
+    "personalizedMode": "false"
+  },
+  "info": {}
+}
